@@ -1,0 +1,66 @@
+{
+  "id": "JCQA_XLM-R-LARGE",
+  "save_dir": "model/fine_tuned",
+  "hparams": {
+    "seed": "TBU",
+    "epoch": 5,
+    "train_batch_size": 32,
+    "eval_batch_size": 32,
+    "max_seq_len": 128,
+    "lr": 2e-5,
+    "weight_decay": 0.1,
+    "betas": [
+      0.9,
+      0.98
+    ],
+    "warmup_proportion": 0.1,
+    "accumulation_steps": 1
+  },
+  "tokenizer": {
+    "pretrained_model_name_or_path": "xlm-roberta-large"
+  },
+  "dataset": {
+    "module": "module.dataset.jcqa",
+    "class_": "JCQA",
+    "root": "data/dataset",
+    "split": {
+      "train": [
+        {
+          "name": "JCQA"
+        }
+      ],
+      "dev": [
+        {
+          "name": "JCQA"
+        }
+      ],
+      "test": [
+        {
+          "name": "JCQA"
+        }
+      ]
+    },
+    "ext": ".jsonl",
+    "kwargs": {
+      "choice-only": false
+    }
+  },
+  "model": {
+    "module": "module.model.multiple_choice",
+    "class_": "XLMRobertaForMultipleChoice",
+    "pretrained_model_name_or_path": "xlm-roberta-large",
+    "post_hoc": {}
+  },
+  "trainer": {
+    "module": "module.trainer.jcqa",
+    "class_": "JCQATrainer",
+    "preference": {
+      "evaluate_on_train": false,
+      "save_per_epoch": 0
+    }
+  },
+  "tester": {
+    "module": "module.tester.jcqa",
+    "class_": "JCQATester"
+  }
+}

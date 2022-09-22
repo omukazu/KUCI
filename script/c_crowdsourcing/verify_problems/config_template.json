@@ -1,0 +1,10 @@
+{
+  "check_problems": [
+    "1@context@choice_a@choice_b@choice_c@choice_d",
+    "2@context@choice_a@choice_b@choice_c@choice_d",
+    "3@context@choice_a@choice_b@choice_c@choice_d",
+    "4@context@choice_a@choice_b@choice_c@choice_d"
+  ],
+  "description": "断片的な文と4つの選択肢を提示します。##後に続く文で最も適切だと思うものを選んでください。##(文法的に多少違和感のある選択肢が正答の場合もあります。)",
+  "num_problems_per_task": 10
+}

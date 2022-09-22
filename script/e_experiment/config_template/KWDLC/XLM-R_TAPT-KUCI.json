@@ -1,0 +1,73 @@
+{
+  "id": "TAPT-KUCI-KWDLC_XLM-R-LARGE",
+  "save_dir": "model/fine_tuned",
+  "hparams": {
+    "seed": "TBU",
+    "epoch": 10,
+    "train_batch_size": 32,
+    "eval_batch_size": 32,
+    "max_seq_len": 128,
+    "lr": 5e-6,
+    "weight_decay": 0.1,
+    "betas": [
+      0.9,
+      0.98
+    ],
+    "warmup_proportion": 0.1,
+    "accumulation_steps": 1,
+    "patience": 3
+  },
+  "tokenizer": {
+    "pretrained_model_name_or_path": "xlm-roberta-large"
+  },
+  "dataset": {
+    "module": "module.dataset.kwdlc",
+    "class_": "KWDLC",
+    "root": "data/dataset",
+    "split": {
+      "train": [
+        {
+          "name": "KWDLC"
+        }
+      ],
+      "dev": [
+        {
+          "name": "KWDLC"
+        }
+      ],
+      "test": [
+        {
+          "name": "KWDLC"
+        }
+      ]
+    },
+    "ext": ".jsonl",
+    "kwargs": {
+      "choice-only": false
+    }
+  },
+  "model": {
+    "module": "module.model.sequence_classification",
+    "class_": "XLMRobertaForSequenceClassification",
+    "pretrained_model_name_or_path": "model/fine_tuned/TAPT-KUCI_XLM-R-LARGE_0",
+    "post_hoc": {
+      "num_classes": 7
+    }
+  },
+  "trainer": {
+    "module": "module.trainer.kwdlc",
+    "class_": "KWDLCTrainer",
+    "preference": {
+      "evaluate_on_train": false,
+      "save_per_epoch": 0
+    }
+  },
+  "tester": {
+    "module": "module.tester.kwdlc",
+    "class_": "KWDLCTester"
+  },
+  "ensembler": {
+    "module": "module.ensembler.kwdlc",
+    "class_": "KWDLCBlender"
+  }
+}

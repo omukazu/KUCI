@@ -1,0 +1,8 @@
+train.txt
+l.4256: 。。 -> 。
+l.4583, l.4584, l.4588: シンディ -> シンディー
+
+test.txt
+l.255: delete strange string "ｓｓ"
+l.346: append "。" to the end of sentence
+l.1131, l.1216, l.2261: 。。 -> 。

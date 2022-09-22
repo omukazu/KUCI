@@ -1,0 +1,52 @@
+{
+  "id": "TAPT_BERT-BASE-NICT",
+  "save_dir": "model/fine_tuned",
+  "hparams": {
+    "seed": 0,
+    "epoch": 100,
+    "train_batch_size": 256,
+    "max_seq_len": 128,
+    "lr": 1e-4,
+    "weight_decay": 0.01,
+    "betas": [
+      0.9,
+      0.98
+    ],
+    "warmup_proportion": 0.06,
+    "accumulation_steps": 1
+  },
+  "tokenizer": {
+    "pretrained_model_name_or_path": "model/pre_trained/BERT-BASE-NICT"
+  },
+  "dataset": {
+    "module": "module.dataset.amlm",
+    "class_": "AMLM",
+    "root": "data/dataset",
+    "split": {
+      "train": [
+        {
+          "name": "AMLM"
+        }
+      ]
+    },
+    "ext": ".txt",
+    "kwargs": {
+      "choice-only": false
+    },
+    "collate_fn": "DataCollatorForLanguageModeling"
+  },
+  "model": {
+    "module": "transformers",
+    "class_": "AutoModelForMaskedLM",
+    "pretrained_model_name_or_path": "model/pre_trained/BERT-BASE-NICT",
+    "post_hoc": {}
+  },
+  "trainer": {
+    "module": "module.trainer.amlm",
+    "class_": "AMLMTrainer",
+    "preference": {
+      "evaluate_on_train": false,
+      "save_per_epoch": 10
+    }
+  }
+}

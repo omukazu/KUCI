@@ -1,0 +1,13 @@
+{
+  "params": {
+    "predicate_threshold": 5000,
+    "case_frame_rate": 0.75,
+    "case_rate": 0.5,
+    "possessive_case_rate": 0.5,
+    "argument_rate": 0.5,
+    "sep_rate": 0.8
+  },
+  "path": {
+    "case_frame_dict": "test/case_frame_dict.json"
+  }
+}

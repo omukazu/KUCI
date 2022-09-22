@@ -1,0 +1,70 @@
+{
+  "id": "TAPT-KUCI_XLM-R-LARGE",
+  "save_dir": "model/fine_tuned",
+  "hparams": {
+    "seed": "TBU",
+    "epoch": 3,
+    "train_batch_size": 32,
+    "eval_batch_size": 32,
+    "max_seq_len": 128,
+    "lr": 5e-6,
+    "weight_decay": 0.1,
+    "betas": [
+      0.9,
+      0.98
+    ],
+    "warmup_proportion": 0.1,
+    "accumulation_steps": 1
+  },
+  "tokenizer": {
+    "pretrained_model_name_or_path": "xlm-roberta-large"
+  },
+  "dataset": {
+    "module": "module.dataset.kuci",
+    "class_": "KUCI",
+    "root": "data/dataset",
+    "split": {
+      "train": [
+        {
+          "name": "KUCI"
+        }
+      ],
+      "dev": [
+        {
+          "name": "KUCI"
+        }
+      ],
+      "test": [
+        {
+          "name": "KUCI"
+        }
+      ]
+    },
+    "ext": ".jsonl",
+    "kwargs": {
+      "choice-only": false
+    }
+  },
+  "model": {
+    "module": "module.model.multiple_choice",
+    "class_": "XLMRobertaForMultipleChoice",
+    "pretrained_model_name_or_path": "model/fine_tuned/TAPT_XLM-R-LARGE",
+    "post_hoc": {}
+  },
+  "trainer": {
+    "module": "module.trainer.kuci",
+    "class_": "KUCITrainer",
+    "preference": {
+      "evaluate_on_train": false,
+      "save_per_epoch": 0
+    }
+  },
+  "tester": {
+    "module": "module.tester.kuci",
+    "class_": "KUCITester"
+  },
+  "ensembler": {
+    "module": "module.ensembler.kuci",
+    "class_": "KUCIBlender"
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "id": "TAPT-KUCI-BJWSC_BERT-BASE-NICT",
+  "save_dir": "model/fine_tuned",
+  "hparams": {
+    "seed": "TBU",
+    "epoch": 50,
+    "train_batch_size": 32,
+    "eval_batch_size": 32,
+    "max_seq_len": 128,
+    "lr": 2e-5,
+    "weight_decay": 0.01,
+    "betas": [
+      0.9,
+      0.999
+    ],
+    "warmup_proportion": 0.1,
+    "accumulation_steps": 1
+  },
+  "tokenizer": {
+    "pretrained_model_name_or_path": "model/pre_trained/BERT-BASE-NICT"
+  },
+  "dataset": {
+    "module": "module.dataset.bjwsc",
+    "class_": "BJWSC",
+    "root": "data/dataset",
+    "split": {
+      "train": [
+        {
+          "name": "BJWSC"
+        }
+      ],
+      "dev": [
+        {
+          "name": "BJWSC"
+        }
+      ],
+      "test": [
+        {
+          "name": "BJWSC"
+        }
+      ]
+    },
+    "ext": ".jsonl",
+    "kwargs": {
+      "choice-only": false
+    }
+  },
+  "model": {
+    "module": "module.model.sequence_regression",
+    "class_": "BertForSequenceRegression",
+    "pretrained_model_name_or_path": "model/fine_tuned/TAPT-KUCI_BERT-BASE-NICT_0",
+    "post_hoc": {}
+  },
+  "trainer": {
+    "module": "module.trainer.bjwsc",
+    "class_": "BJWSCTrainer",
+    "preference": {
+      "evaluate_on_train": false,
+      "save_per_epoch": 0
+    }
+  },
+  "tester": {
+    "module": "module.tester.bjwsc",
+    "class_": "BJWSCTester"
+  }
+}

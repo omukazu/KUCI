@@ -1,0 +1,2 @@
+{"id": 0, "context": "腹 が 減った ので", "choice_a": "薬 を 飲む", "choice_b": "食欲 も 落ちる", "choice_c": "カロリー は 消費 する", "choice_d": "ご飯 を 食べる", "label": "d", "agreement": -1, "core_event_pair": "腹/はら,ガ,減る/へる|御飯/ごはん,ヲ,食べる/たべる"}
+{"id": 1, "context": "雨 が 降ったら", "choice_a": "後方 は 雪 が 舞い上がる", "choice_b": "雨 が 降る", "choice_c": "自転車 を 引っ張り出す", "choice_d": "傘 を 差す だろう", "label": "d", "agreement": -1, "core_event_pair": "雨/あめ,ガ,降る/ふる|傘/かさ,ヲ,差す/さす"}
